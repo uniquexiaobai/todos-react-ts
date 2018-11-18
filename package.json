@@ -2,7 +2,7 @@
   "name": "todos-with-hooks",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://uniquexiaobai.cn/react-with-hooks/",
+  "homepage": "https://uniquexiaobai.github.io/todos-with-hooks/",
   "dependencies": {
     "@babel/core": "7.1.0",
     "@svgr/webpack": "2.4.1",
