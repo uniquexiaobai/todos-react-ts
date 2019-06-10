@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "68818a500684260c467c",
-    "url": "/todos-with-hooks/static/css/main.5e5ba45e.chunk.css"
+    "revision": "f234664ca3748dc1c4f7",
+    "url": "/todos-with-hooks/static/css/main.2fff641d.chunk.css"
   },
   {
-    "revision": "68818a500684260c467c",
-    "url": "/todos-with-hooks/static/js/main.68818a50.chunk.js"
+    "revision": "f234664ca3748dc1c4f7",
+    "url": "/todos-with-hooks/static/js/main.f234664c.chunk.js"
   },
   {
     "revision": "fadf1c93de387c7e0339",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/todos-with-hooks/static/js/runtime~main.d9eabf1b.js"
   },
   {
-    "revision": "824e5f3eb0a00bc685c99017a9fbc6c9",
+    "revision": "f24fe933b343bbef2cd8e1e5b80c3d63",
     "url": "/todos-with-hooks/index.html"
   }
 ];

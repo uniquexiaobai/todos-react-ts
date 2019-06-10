@@ -1,13 +1,13 @@
 {
-  "main.css": "/todos-with-hooks/static/css/main.5e5ba45e.chunk.css",
-  "main.js": "/todos-with-hooks/static/js/main.68818a50.chunk.js",
-  "main.js.map": "/todos-with-hooks/static/js/main.68818a50.chunk.js.map",
+  "main.css": "/todos-with-hooks/static/css/main.2fff641d.chunk.css",
+  "main.js": "/todos-with-hooks/static/js/main.f234664c.chunk.js",
+  "main.js.map": "/todos-with-hooks/static/js/main.f234664c.chunk.js.map",
   "static/js/1.fadf1c93.chunk.js": "/todos-with-hooks/static/js/1.fadf1c93.chunk.js",
   "static/js/1.fadf1c93.chunk.js.map": "/todos-with-hooks/static/js/1.fadf1c93.chunk.js.map",
   "runtime~main.js": "/todos-with-hooks/static/js/runtime~main.d9eabf1b.js",
   "runtime~main.js.map": "/todos-with-hooks/static/js/runtime~main.d9eabf1b.js.map",
-  "static/css/main.5e5ba45e.chunk.css.map": "/todos-with-hooks/static/css/main.5e5ba45e.chunk.css.map",
+  "static/css/main.2fff641d.chunk.css.map": "/todos-with-hooks/static/css/main.2fff641d.chunk.css.map",
   "index.html": "/todos-with-hooks/index.html",
-  "precache-manifest.4087f1e0c3c684b1f00315083a37bb0a.js": "/todos-with-hooks/precache-manifest.4087f1e0c3c684b1f00315083a37bb0a.js",
+  "precache-manifest.a24f0fdf18762210ce9b2c23c8e392dd.js": "/todos-with-hooks/precache-manifest.a24f0fdf18762210ce9b2c23c8e392dd.js",
   "service-worker.js": "/todos-with-hooks/service-worker.js"
 }
