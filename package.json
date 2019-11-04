@@ -1,7 +1,8 @@
 {
   "name": "todos",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://uniquexiaobai.github.io/todos/",
   "dependencies": {
     "@lokibai/react-store": "^0.1.1",
     "@types/classnames": "^2.2.9",
