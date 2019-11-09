@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from '@lokibai/react-store';
+import { ENTER_KEY } from './constants';
+import { Action } from './store';
 
-const Header: React.FunctionComponent = () => {
+const Header: React.FC = () => {
 	const input = useRef<HTMLInputElement>(null);
 	const dispatch = useDispatch();
 	const [text, setText] = useState<string>('');
@@ -14,12 +16,12 @@ const Header: React.FunctionComponent = () => {
 
 	const onChange = (e: {
 		target: { value: React.SetStateAction<string> };
-	}) => {
+	}): void => {
 		setText(e.target.value);
 	};
 
 	const onKeyDown = (e: { keyCode: number }) => {
-		if (e.keyCode !== 13) return;
+		if (e.keyCode !== ENTER_KEY) return;
 
 		const value = text.trim();
 
@@ -30,7 +32,8 @@ const Header: React.FunctionComponent = () => {
 				completed: false,
 			};
 
-			dispatch({ type: 'create', payload: todo });
+			dispatch({ type: 'create', payload: todo } as Action);
+
 			setText('');
 		}
 	};

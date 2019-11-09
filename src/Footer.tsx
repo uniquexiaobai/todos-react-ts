@@ -1,28 +1,30 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from '@lokibai/react-store';
-
 import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from './constants';
+import { AppState, Action, NowShowing } from './store';
 
-const Footer: React.FunctionComponent = () => {
-	const { nowShowing, todos } = useSelector((state: any) => state);
+const Footer: React.FC = () => {
+	const { nowShowing, todos } = useSelector(
+		(state: AppState): AppState => state
+	);
 	const dispatch = useDispatch();
 
-	const activeTodoCount = todos.reduce(
+	const activeTodoCount: number = todos.reduce(
 		(total: number, todo: { completed: any }) =>
 			todo.completed ? total : total + 1,
 		0
 	);
 
-	const onToggleShowing = (nowShowing: any) => {
+	const onToggleShowing = (nowShowing: NowShowing): void => {
 		dispatch({
 			type: 'toggleShowing',
-			payload: { nowShowing: nowShowing },
-		});
+			payload: { nowShowing },
+		} as Action);
 	};
 
-	const onClearCompleted = () => {
-		dispatch({ type: 'clearCompleted' });
+	const onClearCompleted = (): void => {
+		dispatch({ type: 'clearCompleted' } as Action);
 	};
 
 	return todos.length ? (
@@ -34,6 +36,7 @@ const Footer: React.FunctionComponent = () => {
 
 			<ul className='filters'>
 				<li>
+                    {/* eslint-disable-next-line */}
 					<a
 						onClick={() => onToggleShowing(ALL_TODOS)}
 						className={classNames({
@@ -44,6 +47,7 @@ const Footer: React.FunctionComponent = () => {
 					</a>
 				</li>{' '}
 				<li>
+                    {/* eslint-disable-next-line */}
 					<a
 						onClick={() => onToggleShowing(ACTIVE_TODOS)}
 						className={classNames({

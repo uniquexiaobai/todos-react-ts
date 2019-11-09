@@ -1,20 +1,21 @@
-import React, { useState, useEffect, useRef, Props } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from '@lokibai/react-store';
-
-import { ACTIVE_TODOS, COMPLETED_TODOS } from './constants';
+import { ACTIVE_TODOS, COMPLETED_TODOS, ENTER_KEY } from './constants';
+import { AppState, Todo, Action } from './store';
 
 const Main: React.FunctionComponent = () => {
-	const { nowShowing, todos } = useSelector((state: any) => state);
+	const { nowShowing, todos } = useSelector(
+		(state: AppState): AppState => state
+	);
 	const dispatch = useDispatch();
 
-	const activeTodoCount = todos.reduce(
-		(total: number, todo: { completed: any }) =>
-			todo.completed ? total : total + 1,
+	const activeTodoCount: number = todos.reduce(
+		(total: number, todo: Todo) => (todo.completed ? total : total + 1),
 		0
 	);
 
-	const showTodos = todos.filter((todo: { completed: any }) => {
+	const showTodos: Todo[] = todos.filter((todo: Todo) => {
 		switch (nowShowing) {
 			case ACTIVE_TODOS:
 				return !todo.completed;
@@ -25,10 +26,13 @@ const Main: React.FunctionComponent = () => {
 		}
 	});
 
-	const onToggleAll = (e: { target: { checked: any } }) => {
+	const onToggleAll = (e: { target: { checked: boolean } }): void => {
 		const checked = e.target.checked;
 
-		dispatch({ type: 'toggleAll', payload: { completed: checked } });
+		dispatch({
+			type: 'toggleAll',
+			payload: { completed: checked },
+		} as Action);
 	};
 
 	return (
@@ -41,7 +45,7 @@ const Main: React.FunctionComponent = () => {
 			/>
 
 			<ul className='todo-list'>
-				{showTodos.map((todo: { id: string | number | undefined }) => (
+				{showTodos.map(todo => (
 					<TodoItem key={todo.id} todo={todo} />
 				))}
 			</ul>
@@ -49,36 +53,36 @@ const Main: React.FunctionComponent = () => {
 	);
 };
 
-const TodoItem: React.FunctionComponent<any> = ({ todo }) => {
+const TodoItem: React.FunctionComponent<{ todo: Todo }> = ({ todo }) => {
 	const editingInput = useRef<HTMLInputElement>(null);
 	const dispatch = useDispatch();
-	const [editingText, setEditingText] = useState(todo.text);
-	const [editing, setEditing] = useState(false);
+	const [editingText, setEditingText] = useState<string>(todo.text);
+	const [editing, setEditing] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (editing && editingInput && editingInput.current) {
 			editingInput.current.focus();
 		}
-	});
+	}, [editing]);
 
-	const onToggle = () => {
-		dispatch({ type: 'toggle', payload: { id: todo.id } });
+	const onToggle = (): void => {
+		dispatch({ type: 'toggle', payload: { id: todo.id } } as Action);
 	};
 
-	const onDestroy = () => {
-		dispatch({ type: 'destroy', payload: { id: todo.id } });
+	const onDestroy = (): void => {
+		dispatch({ type: 'destroy', payload: { id: todo.id } } as Action);
 	};
 
-	const onEdit = () => {
+	const onEdit = (): void => {
 		setEditing(true);
 	};
 
-	const onChange = (e: { target: { value: any } }) => {
+	const onChange = (e: { target: { value: string } }): void => {
 		setEditingText(e.target.value);
 	};
 
-	const onBlur = () => {
-		const text = editingText.trim();
+	const onBlur = (): void => {
+		const text: string = editingText.trim();
 
 		if (!text) {
 			onDestroy();
@@ -89,13 +93,13 @@ const TodoItem: React.FunctionComponent<any> = ({ todo }) => {
 					id: todo.id,
 					text: editingText,
 				},
-			});
+			} as Action);
 			setEditing(false);
 		}
 	};
 
-	const onKeyDown = (e: { which: number }) => {
-		if (e.which === 13) {
+	const onKeyDown = (e: { which: number }): void => {
+		if (e.which === ENTER_KEY) {
 			onBlur();
 		}
 	};

@@ -1,14 +1,35 @@
 import { ALL_TODOS } from './constants';
 
-// type AppState = {};
-// type Action = {};
+export type NowShowing = string;
+export type Todo = {
+	id: number;
+	text: string;
+	completed: boolean;
+	name?: string;
+};
+export type AppState = {
+	nowShowing: NowShowing;
+	todos: Todo[];
+};
 
-export const initialState = {
+export type Action =
+	| { type: 'create'; payload: Todo }
+	| { type: 'update'; payload: any } // why error
+	| { type: 'toggle'; payload: { id: Todo['id'] } }
+	| { type: 'toggleAll'; payload: { completed: Todo['completed'] } }
+	| { type: 'destroy'; payload: { id: Todo['id'] } }
+	| { type: 'clearCompleted'; payload: null }
+	| {
+			type: 'toggleShowing';
+			payload: { nowShowing: AppState['nowShowing'] };
+	  };
+
+export const initialState: AppState = {
 	nowShowing: ALL_TODOS,
 	todos: [],
 };
 
-export const reducer = (state, action) => {
+export const reducer = (state: AppState, action: Action): AppState => {
 	const { type, payload } = action;
 
 	console.log(type, payload);
