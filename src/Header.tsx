@@ -12,7 +12,7 @@ const Header: React.FC = () => {
 		if (input && input.current) {
 			input.current.focus();
 		}
-	});
+	}, []);
 
 	const onChange = (e: {
 		target: { value: React.SetStateAction<string> };

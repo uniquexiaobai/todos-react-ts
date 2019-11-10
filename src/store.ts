@@ -1,10 +1,12 @@
+import { NowShowing } from './store';
+import produce from 'immer';
 import { ALL_TODOS } from './constants';
 
 export type NowShowing = string;
 export type Todo = {
 	id: number;
 	text: string;
-	completed: boolean;
+	completed?: boolean;
 	name?: string;
 };
 export type AppState = {
@@ -29,53 +31,48 @@ export const initialState: AppState = {
 	todos: [],
 };
 
-export const reducer = (state: AppState, action: Action): AppState => {
-	const { type, payload } = action;
+export const reducer = produce(
+	(state: AppState, action: Action): AppState => {
+		const { type, payload } = action;
 
-	console.log(type, payload);
+		console.log(type, payload);
 
-	switch (action.type) {
-		case 'create':
-			return { ...state, todos: [...state.todos, payload] };
-		case 'update':
-			return {
-				...state,
-				todos: state.todos.map(todo =>
-					todo.id === payload.id
-						? { ...todo, text: payload.text }
-						: todo
-				),
-			};
-		case 'toggle':
-			return {
-				...state,
-				todos: state.todos.map(todo =>
-					todo.id === payload.id
-						? { ...todo, completed: !todo.completed }
-						: todo
-				),
-			};
-		case 'toggleAll':
-			return {
-				...state,
-				todos: state.todos.map(todo => ({
-					...todo,
-					completed: payload.completed,
-				})),
-			};
-		case 'destroy':
-			return {
-				...state,
-				todos: state.todos.filter(todo => todo.id !== payload.id),
-			};
-		case 'clearCompleted':
-			return {
-				...state,
-				todos: state.todos.filter(todo => !todo.completed),
-			};
-		case 'toggleShowing':
-			return { ...state, nowShowing: payload.nowShowing };
-		default:
-			return state;
+		switch (action.type) {
+			case 'create':
+				state.todos.push(payload);
+				return state;
+			case 'update':
+				state.todos.forEach(todo => {
+					if (todo.id === payload.id) {
+						todo.text = payload.text;
+					}
+				});
+				return state;
+			case 'toggle':
+				state.todos.forEach(todo => {
+					if (todo.id === payload.id) {
+						todo.completed = !todo.completed;
+					}
+				});
+				return state;
+			case 'toggleAll':
+				state.todos.forEach(todo => {
+					todo.completed = payload.completed;
+				});
+				return state;
+			case 'destroy':
+				state.todos.splice(
+					state.todos.findIndex(todo => todo.id === payload.id)
+				);
+				return state;
+			case 'clearCompleted':
+				state.todos = state.todos.filter(todo => !todo.completed);
+				return state;
+			case 'toggleShowing':
+				state.nowShowing = payload.nowShowing;
+				return state;
+			default:
+				return state;
+		}
 	}
-};
+);
