@@ -2,7 +2,7 @@
   "name": "todos",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://uniquexiaobai.github.io/todos/",
+  "homepage": "https://uniquexiaobai.github.io/todos-react-ts/",
   "dependencies": {
     "@lokibai/react-store": "^0.1.1",
     "@types/classnames": "^2.2.9",

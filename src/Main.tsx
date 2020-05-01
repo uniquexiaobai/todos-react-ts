@@ -45,7 +45,7 @@ const Main: React.FunctionComponent = () => {
 			/>
 
 			<ul className='todo-list'>
-				{showTodos.map(todo => (
+				{showTodos.map((todo) => (
 					<TodoItem key={todo.id} todo={todo} />
 				))}
 			</ul>

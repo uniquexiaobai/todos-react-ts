@@ -1,4 +1,3 @@
-import { NowShowing } from './store';
 import produce from 'immer';
 import { ALL_TODOS } from './constants';
 
@@ -42,31 +41,31 @@ export const reducer = produce(
 				state.todos.push(payload);
 				return state;
 			case 'update':
-				state.todos.forEach(todo => {
+				state.todos.forEach((todo) => {
 					if (todo.id === payload.id) {
 						todo.text = payload.text;
 					}
 				});
 				return state;
 			case 'toggle':
-				state.todos.forEach(todo => {
+				state.todos.forEach((todo) => {
 					if (todo.id === payload.id) {
 						todo.completed = !todo.completed;
 					}
 				});
 				return state;
 			case 'toggleAll':
-				state.todos.forEach(todo => {
+				state.todos.forEach((todo) => {
 					todo.completed = payload.completed;
 				});
 				return state;
 			case 'destroy':
 				state.todos.splice(
-					state.todos.findIndex(todo => todo.id === payload.id)
+					state.todos.findIndex((todo) => todo.id === payload.id)
 				);
 				return state;
 			case 'clearCompleted':
-				state.todos = state.todos.filter(todo => !todo.completed);
+				state.todos = state.todos.filter((todo) => !todo.completed);
 				return state;
 			case 'toggleShowing':
 				state.nowShowing = payload.nowShowing;

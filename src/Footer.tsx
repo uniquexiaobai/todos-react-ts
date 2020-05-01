@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from '@lokibai/react-store';
@@ -36,7 +37,7 @@ const Footer: React.FC = () => {
 
 			<ul className='filters'>
 				<li>
-                    {/* eslint-disable-next-line */}
+					{/* eslint-disable-next-line */}
 					<a
 						onClick={() => onToggleShowing(ALL_TODOS)}
 						className={classNames({
@@ -47,7 +48,7 @@ const Footer: React.FC = () => {
 					</a>
 				</li>{' '}
 				<li>
-                    {/* eslint-disable-next-line */}
+					{/* eslint-disable-next-line */}
 					<a
 						onClick={() => onToggleShowing(ACTIVE_TODOS)}
 						className={classNames({
@@ -58,6 +59,7 @@ const Footer: React.FC = () => {
 					</a>
 				</li>{' '}
 				<li>
+					{/* eslint-disable-next-ling */}
 					<a
 						onClick={() => onToggleShowing(COMPLETED_TODOS)}
 						className={classNames({
